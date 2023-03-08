@@ -1,15 +1,18 @@
-const fb = require('express').Router();
+const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
-// const { readAndAppend, readFromFile } = require('../helpers/fsUtils');
+const fs = require('fs');
+const util = require('util');
+const readFromFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
 // Should read the db.json file and return saved notes as json
-fb.get('/api/notes', (req, res) =>
+router.get('/notes', (req, res) =>
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 );
 
 // Receive a new note and save the request body and add it to the json file. 
-fb.post('/api/notes', (req, res) => {
-    // Destructuring assignment for the items in req.body
+router.post('/notes', (req, res) => {
+    // Destructuring assignment for the items in req.body from the index.js file
     const { title, text } = req.body;
 
     // If all the required properties are present
@@ -18,10 +21,14 @@ fb.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuidv4(),
+            id: uuidv4(),
         };
 
-        readAndAppend(newNote, './db/db.json');
+        readFromFile('./db/db.json').then((data) => {
+            console.log(data)
+            let parsedInfo = JSON.parse(data)
+            console.log(parsedInfo)
+        })
 
         const response = {
             status: 'success',
@@ -33,3 +40,5 @@ fb.post('/api/notes', (req, res) => {
         res.json('Error in posting note');
     }
 });
+
+module.exports = router;
