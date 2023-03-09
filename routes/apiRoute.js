@@ -25,20 +25,23 @@ router.post('/notes', (req, res) => {
         };
 
         readFromFile('./db/db.json').then((data) => {
-            console.log(data)
-            let parsedInfo = JSON.parse(data)
-            console.log(parsedInfo)
-        })
+            let parsedNotes = JSON.parse(data)
+            console.log(parsedNotes)
+            parsedNotes.push(newNote);
+            console.log(newNote);
 
-        const response = {
-            status: 'success',
-            body: newNote,
-        };
-
-        res.json(response);
+            writeFile('./db/db.json', JSON.stringify(parsedNotes)).then((results) => {
+                const response = {
+                    status: 'success',
+                    body: newNote,
+                };
+                res.json(response);
+            });
+        });
     } else {
         res.json('Error in posting note');
     }
 });
+
 
 module.exports = router;
