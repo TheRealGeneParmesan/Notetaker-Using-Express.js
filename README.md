@@ -1,6 +1,6 @@
 ## Jeremy's SVG
     
-   An application called Note Taker that allows a user to werite and save notes using Express.js. 
+   An application called Note Taker that allows a user to write and save notes using Express.js. 
 
 ## Table of Contents
 
