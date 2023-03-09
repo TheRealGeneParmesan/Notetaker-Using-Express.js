@@ -47,5 +47,25 @@ router.post('/notes', (req, res) => {
     }
 });
 
+// Here we delete the ID of the note that we want to delete. 
+
+router.delete('/notes/:id', (req, res) => {
+    readFromFile('./db/db.json').then((data) => {
+        let parsedNotes = JSON.parse(data)
+        console.log(req.params.id)
+        parsedNotes = parsedNotes.filter(note => note.id !== req.params.id);
+
+        // Here we write the updated parsedNotes array 
+        writeFile('./db/db.json', JSON.stringify(parsedNotes)).then((results) => {
+            const response = {
+                status: 'success',
+                body: parsedNotes,
+            };
+            res.json(response);
+        });
+    });
+});
+
+
 
 module.exports = router;
