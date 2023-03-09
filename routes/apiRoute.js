@@ -10,7 +10,7 @@ router.get('/notes', (req, res) =>
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 );
 
-// Receive a new note and save the request body and add it to the json file. 
+// Receives a new note and save the request body and add it to the json file. 
 router.post('/notes', (req, res) => {
     // Destructuring assignment for the items in req.body from the index.js file
     const { title, text } = req.body;
@@ -24,11 +24,15 @@ router.post('/notes', (req, res) => {
             id: uuidv4(),
         };
 
+        // Reads the db.json file and then parses the user data into the parsedNotes array. We then push the new note oject into the array. 
+
         readFromFile('./db/db.json').then((data) => {
             let parsedNotes = JSON.parse(data)
             console.log(parsedNotes)
             parsedNotes.push(newNote);
             console.log(newNote);
+
+            // Writes the updated parsedNotes array to the db.json file. 
 
             writeFile('./db/db.json', JSON.stringify(parsedNotes)).then((results) => {
                 const response = {
