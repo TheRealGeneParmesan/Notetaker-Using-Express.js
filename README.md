@@ -1,4 +1,4 @@
-## Jeremy's Not Taker Extravaganza 
+## Jeremy's Note Taker Extravaganza 
     
    An application called Note Taker that allows a user to write and save notes using Express.js. 
 
