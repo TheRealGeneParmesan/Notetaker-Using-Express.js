@@ -1,6 +1,6 @@
 ## Jeremy's Note Taker Extravaganza 
     
-   An application called Note Taker that allows a user to write and save notes using Express.js. 
+   A Note Taker applicaton that allows a user to write and save notes using Express.js. 
    https://express-js-notetaker.herokuapp.com/
 
 ## Table of Contents
@@ -33,7 +33,7 @@ The functionality of saving and deleting notes was tested locally and via web ap
 
 ## Questions
 
-If you have additional questions you can contact me at Geneparmigiano@gmail.com. Also if you want to check out a cool github page you can find me here: https://github.com/TheRealGeneParmesan.
+If you have additional questions you can contact me at Geneparmigiano@gmail.com. Also if you want to check out a cool Github page you can find me here: https://github.com/TheRealGeneParmesan.
 
 ## License
 
